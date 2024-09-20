@@ -46,3 +46,15 @@ function completeOrder(CustomerName) {
         console.log(`Order for ${CustomerName} is completed!`)}
     else {
         console.log(`Order for ${CustomerName} was not found!`)}};
+
+//Task 6-Create a Function to Check Pending Orders
+function checkPendingOrders (orders){
+   orders. forEach(order=>{
+    if(order.status === "Pending")
+        console.log(`Order for ${order.CustomerName}`);
+        console.log(`Items:`);
+        order.items.forEach(item=>{
+        console.log(`${item.productName}, Quantity: ${item.quantity}`)
+        });
+        console.log(`Status: ${order.status}`)
+        console.log(`----------------------`)})};
