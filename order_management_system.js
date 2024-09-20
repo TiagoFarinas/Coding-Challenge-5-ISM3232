@@ -10,9 +10,11 @@ const inventory = [{name: "Espresso" , price:4 , quantity:10},
  //I was a little consufed if this task was really supossed to be this simple
 
  //Task 3-Create a Function to Place an Order
+ function findProduct(productName) {
+    return inventory.find(prod => prod.name === productName)}; //Function created to help with task 4 for the code to be DRY
  function placeOrder(CustomerName, OrderedItems) {
     for (let item of OrderedItems) {
-        let product = inventory.find(prod => prod.name === item.productName);
+        let product = findProduct(item.productName);
         if (!product) {
             console.log(`${item.productName} was not found in inventory.`);
             return};
@@ -27,3 +29,12 @@ const inventory = [{name: "Espresso" , price:4 , quantity:10},
         items: OrderedItems,
         status: "Pending"});
     console.log(`The order for ${CustomerName} was placed!`)};
+
+//Task 4-Create a Function to Calculate Total for an Order
+function calculateOrderTotal(order) {
+    return order.items.reduce((total, item) => {
+        let product = findProduct(item.productName); //helper function to DRY
+        if (product) {
+            return total + (product.price * item.quantity)}
+        return total},0)};
+        
