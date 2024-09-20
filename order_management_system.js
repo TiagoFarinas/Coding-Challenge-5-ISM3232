@@ -16,14 +16,14 @@ const inventory = [{name: "Espresso" , price:4 , quantity:10},
     for (let item of OrderedItems) {
         let product = findProduct(item.productName);
         if (!product) {
-            console.log(`${item.productName} was not found in inventory.`);
+            console.log(`${item.productName} was not found in inventory.`);//check for products that doesn't exist
             return};
         if (product.quantity < item.quantity) {
             console.log(`Stock is insufficient for ${item.productName}`);
             return}};
     for (let item of OrderedItems) {
         let product = inventory.find(prod => prod.name === item.productName);
-        product.quantity -= item.quantity};
+        product.quantity -= item.quantity}; //Update stock
     orders.push({
         CustomerName: CustomerName,
         items: OrderedItems,
@@ -35,14 +35,14 @@ function calculateOrderTotal(order) {
     return order.items.reduce((total, item) => {
         let product = findProduct(item.productName); //helper function to DRY
         if (product) {
-            return total + (product.price * item.quantity)}
+            return total + (product.price * item.quantity)}//Calculate the total 
         return total},0)};
 
 //Task 5-Create a Function to Mark an Order as Completed
 function completeOrder(CustomerName) {
-    let order = orders.find(order => order.CustomerName === CustomerName);
+    let order = orders.find(order => order.CustomerName === CustomerName);//Check the name in the order
     if (order) {
-        order.status = "Completed";
+        order.status = "Completed";//change the status
         console.log(`Order for ${CustomerName} is completed!`)}
     else {
         console.log(`Order for ${CustomerName} was not found!`)}};
@@ -50,7 +50,7 @@ function completeOrder(CustomerName) {
 //Task 6-Create a Function to Check Pending Orders
 function checkPendingOrders (orders){
    orders. forEach(order=>{
-    if(order.status === "Pending")
+    if(order.status === "Pending")//Check the status of the order
         console.log(`Order for ${order.CustomerName}`);
         console.log(`Items:`);
         order.items.forEach(item=>{
